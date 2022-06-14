@@ -7,6 +7,7 @@
    --primary-color: hsl(170, 100%, 26%);
    --headline: hsl(210, 11%, 15%);
    --paragraph: hsl(210, 9%, 31%);
+   --primary-color-brand-beige: hsl(39, 100%, 97%);
 
    font-size: 62.5%;
 }
@@ -72,4 +73,28 @@ button {
 
    margin-right: auto;
    margin-left: auto;
+}
+
+footer {
+   width: auto;
+   height: 28.5rem;
+
+   background-color: var(--primary-color);
+   color: var(--primary-color-brand-beige);
+   text-align: left;
+   gap: 1rem;
+
+   padding: 6rem 2.4rem 6rem 2.4rem;
+}
+
+#card {
+   width: 32.7rem;
+   text-align: left;
+   margin-right: auto;
+   margin-left: auto;
+   padding: 2.4rem;
+}
+
+.sobreNos {
+   text-align: left;
 }
