@@ -1,9 +1,23 @@
+window.addEventListener("scroll", onScroll);
+
 function onScroll() {
-   console.log(scrollY);
-   if (scrollY <= 30) {
-      nav.classList.remove("scroll");
-   } else {
+   showNacOnScroll();
+   showbackToTop();
+}
+
+function showNacOnScroll() {
+   if (scrollY > 30) {
       nav.classList.add("scroll");
+   } else {
+      nav.classList.remove("scroll");
+   }
+}
+
+function showbackToTop() {
+   if (scrollY > 1400) {
+      backToTopButton.classList.add("show");
+   } else {
+      backToTopButton.classList.remove("show");
    }
 }
 
@@ -28,4 +42,12 @@ ScrollReveal({
 #services .card,
 #about,
 #about header,
-#about .content`);
+#about .content
+#contact,
+#contact header,
+#contact .content,
+footer .logo,
+footer p,
+footer .social-links
+
+`);
