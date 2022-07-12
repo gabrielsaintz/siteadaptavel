@@ -11,6 +11,7 @@
    --headline: hsl(210, 11%, 15%);
    --paragraph: hsl(210, 9%, 31%);
 
+   --brand-light-2: hsl(calc(var(--hue) + 10), 14%, 97%);
    --brand-light: hsl(calc(var(--hue) - 22), 23%, 89%);
    --brand-beige: hsl(39, 100%, 97%);
    --brand-dark: hsl(var(--hue), 100%, 14%);
@@ -44,7 +45,7 @@ body {
 }
 
 .wrapper {
-   width: 37.5rem;
+   width: min(50rem, 100%);
    margin-inline: auto;
    padding-inline: 2.4rem;
 }
@@ -126,6 +127,13 @@ section .content p {
    background-color: var(--brand-dark);
 }
 
+.social-links {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 3.2rem;
+}
+
 /* ----- CUSTOM COLORS -----*/
 
 #services .card circle {
@@ -154,14 +162,15 @@ body.menu-expanded #nav .logo path,
 /* ----- NAVIGATION -----*/
 
 nav {
-   width: 100vw;
-   height: var(--nav-height);
-
    display: flex;
 
+   height: var(--nav-height);
+
    position: fixed;
-   z-index: 100;
    top: 0;
+   width: 100vw;
+
+   z-index: 100;
 }
 
 nav .wrapper {
@@ -178,6 +187,11 @@ nav button {
    background: none;
    border: none;
    cursor: pointer;
+}
+
+nav .menu,
+nav .close-menu {
+   position: fixed;
 }
 
 /* ----- HOME -----*/
@@ -220,7 +234,7 @@ nav button {
 }
 
 .stats {
-   width: 32.7rem;
+   width: 100%;
    padding-block: 4rem;
    margin-inline: auto;
 
@@ -275,10 +289,8 @@ body.menu-expanded .close-menu {
 }
 
 body.menu-expanded .menu {
-   position: fixed;
    top: 0;
    left: 0;
-   z-index: -1;
    background: var(--primary-color);
 
    width: 100vw;
@@ -287,8 +299,7 @@ body.menu-expanded .menu {
    padding-top: var(--nav-height);
 
    transition: transform 300ms;
-
-   transform: translateY(0%);
+   transform: translateY(0);
 }
 
 .menu ul:nth-child(1) {
@@ -296,44 +307,52 @@ body.menu-expanded .menu {
    flex-direction: column;
    gap: 4.8rem;
 
-   margin-top: calc(6rem + var(--nav-height));
-}
+   margin-top: 6rem;
 
-.menu ul li a {
    font-weight: 700;
    font-size: 2.4rem;
    line-height: 3.1rem;
+}
+
+.menu ul li a {
+   color: white;
    text-decoration: none;
-   color: var(--brand-beige);
 }
 
 .menu .button {
    background: white;
-   color: var(--primary-color);
-
+   border-radius: 4rem;
+   font-weight: 700;
    font-size: 1.8rem;
    line-height: 2.3rem;
+   text-transform: uppercase;
+   text-decoration: none;
 
-   margin-inline: auto;
+   color: var(--primary-color);
+
+   display: inline-block;
+   padding: 16px 32px;
+
+   margin-top: 4.8rem;
+   margin-bottom: 8rem;
 }
 
 .menu .button:hover {
-   background: var(--brand-dark);
+   background-color: var(--brand-dark);
    color: white;
 }
 
-.social-links {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   gap: 3.2rem;
+body.menu-expanded .logo,
+body.menu-expanded button {
+   position: relative;
+   z-index: 100;
 }
 
 body.menu-expanded .logo path {
    fill: white;
 }
 
-body.menu-expanded nav button path {
+body.menu-expanded button path {
    stroke: white;
 }
 
@@ -454,4 +473,118 @@ footer .social-links {
    opacity: 1;
    visibility: visible;
    transform: translateY(0);
+}
+
+@media (min-width: 1024px) {
+   /* ----- GERAL -----*/
+   .wrapper {
+      width: min(112rem, 100%);
+   }
+
+   /* ----- NAV -----*/
+
+   /*RESET*/
+   nav#nav .wrapper * {
+      margin: 0;
+      padding: 0;
+      visibility: initial;
+      display: initial;
+      opacity: initial;
+      flex-direction: initial;
+      position: initial;
+      font-size: initial;
+      font-weight: initial;
+      transform: initial;
+      color: initial;
+      background-color: initial;
+   }
+
+   nav#nav .close-menu,
+   nav#nav .open-menu,
+   nav#nav .social-links {
+      display: none;
+   }
+
+   nav#nav .menu {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 60%;
+   }
+
+   nav#nav .menu ul:nth-child(1) {
+      display: flex;
+      gap: 3.2rem;
+   }
+
+   nav#nav .menu ul li a {
+      color: var(--primary-color);
+
+      opacity: 0.7;
+   }
+
+   nav#nav .menu a.button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem 2.4rem;
+
+      border: 1px solid var(--primary-color);
+      border-radius: 4rem;
+
+      color: var(--primary-color);
+
+      font-weight: 700;
+      font-size: 1.4rem;
+      line-height: 1.8rem;
+      text-transform: uppercase;
+   }
+
+   nav#nav.scroll .menu ul li a {
+      color: var(--brand-light-2);
+      opacity: 0.6;
+   }
+
+   nav#nav.scroll .menu li a:hover {
+      color: var(--brand-light-2);
+      opacity: 1;
+   }
+
+   nav#nav.scroll .menu a.button {
+      border-color: white;
+      color: white;
+   }
+
+   nav#nav .menu li a {
+      transition: opacity 0.4s;
+   }
+
+   nav#nav .menu li a:hover {
+      opacity: 1;
+      font-weight: 700;
+   }
+
+   nav#nav .menu li a::after {
+      content: "";
+      width: 0%;
+      height: 2px;
+      background-color: var(--primary-color);
+
+      position: relative;
+      bottom: -2rem;
+      left: -0.5rem;
+
+      display: block;
+
+      transition: width 0.2s;
+   }
+
+   nav#nav.scroll .menu li a::after {
+      background-color: white;
+   }
+
+   nav#nav .menu li a:hover::after {
+      padding-inline: 0.8rem;
+      width: 100%;
+   }
 }
